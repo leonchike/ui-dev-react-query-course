@@ -6,17 +6,17 @@ import useUserData from "../helpers/useUserData";
 import { relativeDate } from "../helpers/relativeDate";
 
 const useIssueData = (issueNumber) => {
-  return useQuery(["issues", issueNumber], () => {
-    return fetch(`/api/issues/${issueNumber}`).then((response) =>
+  return useQuery(["issues", issueNumber], ({ signal }) => {
+    return fetch(`/api/issues/${issueNumber}`, { signal }).then((response) =>
       response.json()
     );
   });
 };
 
 const useIssueComments = (issueNumber) => {
-  return useQuery(["issues", issueNumber, "comments"], () => {
-    return fetch(`/api/issues/${issueNumber}/comments`).then((response) =>
-      response.json()
+  return useQuery(["issues", issueNumber, "comments"], ({ signal }) => {
+    return fetch(`/api/issues/${issueNumber}/comments`, { signal }).then(
+      (response) => response.json()
     );
   });
 };
